@@ -12,5 +12,11 @@
     "require": {
         "seanmorris/ids": "dev-master"
     },
-    "require-dev": {}
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "SeanMorris\\Badger\\Test\\": "test/",
+            "SeanMorris\\Badger\\": "source/"
+        }
+	},
 }

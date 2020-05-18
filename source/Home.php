@@ -1,5 +1,5 @@
 <?php
-namespace SeanMorris\Eventi;
+namespace SeanMorris\Badger;
 class Home implements \SeanMorris\Ids\Routable
 {
 	public function index($router)
