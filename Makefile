@@ -2,8 +2,8 @@
 .PHONY: init
 
 SHELL    = /bin/bash
-PROJECT  ?=project
-REPO     ?=repository
+PROJECT  ?=badger
+REPO     ?=sean
 
 -include .env
 -include .env.${TARGET}
