@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "seanmorris/ids": "dev-master"
+        "seanmorris/ids": "dev-sm-loader"
     },
     "require-dev": {},
     "autoload": {
@@ -18,5 +18,5 @@
             "SeanMorris\\Badger\\Test\\": "test/",
             "SeanMorris\\Badger\\": "source/"
         }
-	},
+	}
 }

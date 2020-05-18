@@ -4,23 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95af90006a4d5814c90415b924c75752",
+    "content-hash": "0bfdf48fd577fc9928c9f15bf679b338",
     "packages": [
         {
             "name": "seanmorris/ids",
-            "version": "dev-master",
+            "version": "dev-sm-loader",
             "source": {
                 "type": "git",
                 "url": "https://github.com/seanmorris/ids.git",
-                "reference": "6a2d345c841175b0f4870c9cef34ea9b53493307"
+                "reference": "c044089bf76ab6269bcdb84e83cd9af44ddbc62b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seanmorris/ids/zipball/6a2d345c841175b0f4870c9cef34ea9b53493307",
-                "reference": "6a2d345c841175b0f4870c9cef34ea9b53493307",
+                "url": "https://api.github.com/repos/seanmorris/ids/zipball/c044089bf76ab6269bcdb84e83cd9af44ddbc62b",
+                "reference": "c044089bf76ab6269bcdb84e83cd9af44ddbc62b",
                 "shasum": ""
             },
             "require-dev": {
+                "phpunit/phpunit": "^9",
+                "seanmorris/ksqlc": "dev-master",
                 "simpletest/simpletest": "dev-master"
             },
             "bin": [
@@ -40,7 +42,7 @@
                     "email": "sean@sean-morris.com"
                 }
             ],
-            "time": "2020-03-31T08:21:17+00:00"
+            "time": "2020-05-18T05:22:43+00:00"
         }
     ],
     "packages-dev": [],
