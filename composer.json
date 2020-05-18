@@ -1,6 +1,6 @@
 {
-    "name": "seanmorris/ids-project",
-    "description": "Project template for Ids projects.",
+    "name": "seanmorris/badger",
+    "description": "Dynamically generate status badges for READMEs based on external APIs.",
     "type": "project",
     "license": "Apache-2.0",
     "authors": [
@@ -12,7 +12,5 @@
     "require": {
         "seanmorris/ids": "dev-master"
     },
-    "require-dev": {
-		"simpletest/simpletest": "dev-master"
-	}
+    "require-dev": {}
 }
