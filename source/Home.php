@@ -55,7 +55,7 @@ class Home implements \SeanMorris\Ids\Routable
 		{
 			if($item->name === $workflow)
 			{
-				header('Cache-Control: max-age=300');
+				header('Content-type: image/svg+xml');
 
 				$colors = [
 					'success'   => '107529'
