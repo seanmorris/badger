@@ -2,6 +2,13 @@
 namespace SeanMorris\Badger;
 class Home implements \SeanMorris\Ids\Routable
 {
+	public function index($router)
+	{
+		header('HTTP/1.1 200 MUSHROOM MUSHROOM');
+
+		return new HomeView;
+	}
+
 	public function _dynamic($router)
 	{
 		$args = $router->request()->path(-1)->nodes();
