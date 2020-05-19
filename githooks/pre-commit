@@ -1,0 +1,36 @@
+#!/bin/bash
+set -eu;
+
+# while read -d $'\0' VAR; do
+# 	[[ ! -z "$VAR" ]] && declare "$VAR";
+# done < <(make @${TARGET} env SEP=-0);
+
+# [[ "$TARGET" == "test" ]] && set +x;
+
+echo Checking PHP syntax...;
+
+PHP_ERROR=0;
+
+git diff-index HEAD | grep "^:" | grep ".php" \
+	| sed 's:.* [UAM][ \\''t]*\([^ \\''t]*\):\1:g' \
+	| while read FILE; do \
+		echo Checking $FILE...;
+		test -f $FILE || continue;
+		php -l $FILE 2>&1 ;
+		PHP_ERROR=$?;
+		[[ -z "$PHP_ERROR" ]] || echo -ne "\033[1A\033[2K\033[1A\033[2K";
+	done;
+
+set -eu;
+
+[[ -z "$PHP_ERROR" ]] && ( \
+	echo Please correct the above errors before committing.; \
+		exit $PHP_ERROR;\
+	) \
+	|| echo No php errors found.;
+
+echo Running tests...;
+
+make @test t;
+
+# echo Committing to $BRANCH;

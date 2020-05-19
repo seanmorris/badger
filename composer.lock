@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e1479f9b4d862caee7ec54fc102a105",
+    "content-hash": "4393d94be31e4ec24baa85d84c2517b1",
     "packages": [
         {
             "name": "seanmorris/ids",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/seanmorris/ids.git",
-                "reference": "c044089bf76ab6269bcdb84e83cd9af44ddbc62b"
+                "reference": "298175e249b65e1b8d51ede8018e3cb28f51afa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seanmorris/ids/zipball/c044089bf76ab6269bcdb84e83cd9af44ddbc62b",
-                "reference": "c044089bf76ab6269bcdb84e83cd9af44ddbc62b",
+                "url": "https://api.github.com/repos/seanmorris/ids/zipball/298175e249b65e1b8d51ede8018e3cb28f51afa1",
+                "reference": "298175e249b65e1b8d51ede8018e3cb28f51afa1",
                 "shasum": ""
             },
             "require-dev": {
@@ -42,7 +42,44 @@
                     "email": "sean@sean-morris.com"
                 }
             ],
-            "time": "2020-05-18T05:22:43+00:00"
+            "time": "2020-05-19T01:34:10+00:00"
+        },
+        {
+            "name": "seanmorris/theme",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/seanmorris/theme.git",
+                "reference": "97554e153312026c7db4af8ae3653d20fe9d117d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/seanmorris/theme/zipball/97554e153312026c7db4af8ae3653d20fe9d117d",
+                "reference": "97554e153312026c7db4af8ae3653d20fe9d117d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "simpletest/simpletest": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SeanMorris\\Theme\\Test\\": "test/",
+                    "SeanMorris\\Theme\\": "source/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sean Morris",
+                    "email": "sean@sean-morris.com"
+                }
+            ],
+            "description": "Simple, sane templating and theming for PHP",
+            "time": "2017-07-02T12:52:16+00:00"
         }
     ],
     "packages-dev": [],
