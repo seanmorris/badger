@@ -71,8 +71,20 @@ class Home implements \SeanMorris\Ids\Routable
 					, 'default' => '6E9DA8'
 				];
 
+				$status = $item->status;
+
+				if($status === 'success')
+				{
+					$status = 'passing!';
+				}
+
+				if($status === 'failed')
+				{
+					$status = 'failing!';
+				}
+
 				return new BadgeView([
-					'message' => htmlentities($item->status)
+					'message' => htmlentities($status)
 					, 'label' => htmlentities($_GET['label'] ?? $item->name)
 					, 'color' => $colors[$item->status] ?? $colors['default']
 				]);
