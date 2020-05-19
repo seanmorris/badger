@@ -1,0 +1,10 @@
+.env
+.env.*
+.env_*
+.env_*
+.env_*
+.var
+.lock_env
+vendor/*
+!infra/env/.env
+!infra/env/.env.*
