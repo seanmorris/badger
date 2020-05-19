@@ -10,7 +10,7 @@ class Home implements \SeanMorris\Ids\Routable
 		$project  = array_shift($args);
 		$workflow = array_shift($args);
 
-		if(!$owner || !$project || !$workflow)
+		if(!$project)
 		{
 			return FALSE;
 		}

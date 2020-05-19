@@ -2,8 +2,6 @@
 namespace SeanMorris\Badger;
 class BadgeView extends \SeanMorris\Theme\View
 {
-	// protected $color   = '#a93a29';
-	// protected $color   = '#107529';
 }
 
 __halt_compiler(); ?>
