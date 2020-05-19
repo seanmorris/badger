@@ -2,13 +2,18 @@
 namespace SeanMorris\Badger;
 class Home implements \SeanMorris\Ids\Routable
 {
-	public function circle($router)
+	public function _dynamic($router)
 	{
-		$args = $router->request()->path()->consumeNodes();
+		$args = $router->request()->path(-1)->nodes();
 
-		$owner    = array_shift($args);
+		$owner = 'seanmorris';
 		$project  = array_shift($args);
 		$workflow = array_shift($args);
+
+		if(!$owner || !$project || !$workflow)
+		{
+			return FALSE;
+		}
 
 		$context = stream_context_create(['http' => [
 			'ignore_errors' => true
@@ -44,23 +49,32 @@ class Home implements \SeanMorris\Ids\Routable
 
 		$badges = [];
 
+		header('Content-type: application/json');
+
 		foreach($workflows->items as $item)
 		{
 			if($item->name === $workflow)
 			{
-				header('Content-type: image/svg+xml');
+				header('Cache-Control: max-age=300');
+
+				$colors = [
+					'success'   => '107529'
+					, 'running' => 'A89B39'
+					, 'failed'  => 'a93a29'
+					, 'default' => '6E9DA8'
+				];
 
 				return new BadgeView([
 					'message' => htmlentities($item->status)
 					, 'label' => htmlentities($_GET['label'] ?? $item->name)
-					, 'color' => $item->status === 'success'
-						? '107529'
-						: 'a93a29'
+					, 'color' => $colors[$item->status] ?? $colors['default']
 				]);
 			}
 
 			$badges[ $item->name ] = $item->status;
 		}
+
+		header('Cache-Control: no-cache');
 
 		header('Content-type: application/json');
 
