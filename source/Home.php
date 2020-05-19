@@ -49,7 +49,7 @@ class Home implements \SeanMorris\Ids\Routable
 
 		$badges = [];
 
-		header('Content-type: application/json');
+		header('Cache-Control: no-cache');
 
 		foreach($workflows->items as $item)
 		{
@@ -73,8 +73,6 @@ class Home implements \SeanMorris\Ids\Routable
 
 			$badges[ $item->name ] = $item->status;
 		}
-
-		header('Cache-Control: no-cache');
 
 		header('Content-type: application/json');
 
