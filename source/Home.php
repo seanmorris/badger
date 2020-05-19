@@ -1,6 +1,9 @@
 <?php
 namespace SeanMorris\Badger;
-class Home implements \SeanMorris\Ids\Routable
+
+use \SeanMorris\Ids\Routable, \SeanMorris\Ids\Settings;
+
+class Home implements Routable
 {
 	public function index($router)
 	{
@@ -11,11 +14,16 @@ class Home implements \SeanMorris\Ids\Routable
 
 	public function _dynamic($router)
 	{
+		header('Cache-Control: no-cache');
+
 		$args = $router->request()->path(-1)->nodes();
 
-		$owner = 'seanmorris';
+		$circleConfig = Settings::read('circleci');
+
+		$owner    = $circleConfig->username;
 		$project  = array_shift($args);
 		$workflow = array_shift($args);
+		$branch   = array_shift($args) ?: 'master';
 
 		if(!$project)
 		{
@@ -27,7 +35,7 @@ class Home implements \SeanMorris\Ids\Routable
 			, 'content'     => NULL
 			, 'method'      => 'GET' //$method
 			, 'header'      => [
-				'Circle-Token: 0bac6b2c99a1bd1d959c0f90bbd9ae256ebf7d52'
+				'Circle-Token: ' . $circleConfig->token
 				, 'Content-Type: application/json; charset=utf-8'
 				, 'Accept: application/vnd.ksql.v1+json'
 			]
@@ -43,58 +51,76 @@ class Home implements \SeanMorris\Ids\Routable
 		$handle    = fopen($url, 'r', FALSE, $context);
 		$rawData   = stream_get_contents($handle);
 		$pipelines = json_decode($rawData);
-		$lastPipe  = array_shift($pipelines->items);
 
-		$url = sprintf(
-			'https://circleci.com/api/v2/pipeline/%s/workflow'
-			, $lastPipe->id
-		);
-
-		$handle    = fopen($url, 'r', FALSE, $context);
-		$rawData   = stream_get_contents($handle);
-		$workflows = json_decode($rawData);
-
-		$badges = [];
-
-		header('Cache-Control: no-cache');
-
-		foreach($workflows->items as $item)
+		foreach($pipelines->items as $item)
 		{
-			if($item->name === $workflow)
+			if(!$branch || $branch === $item->vcs->branch)
 			{
-				header('Content-type: image/svg+xml');
-
-				$colors = [
-					'success'   => '107529'
-					, 'running' => 'A89B39'
-					, 'failed'  => 'a93a29'
-					, 'default' => '6E9DA8'
-				];
-
-				$status = $item->status;
-
-				if($status === 'success')
-				{
-					$status = 'passing!';
-				}
-
-				if($status === 'failed')
-				{
-					$status = 'failing!';
-				}
-
-				return new BadgeView([
-					'message' => htmlentities($status)
-					, 'label' => htmlentities($_GET['label'] ?? $item->name)
-					, 'color' => $colors[$item->status] ?? $colors['default']
-				]);
+				$lastPipe = $item;
+				break;
 			}
-
-			$badges[ $item->name ] = $item->status;
 		}
 
-		header('Content-type: application/json');
+		if($lastPipe??0)
+		{
+			$url = sprintf(
+				'https://circleci.com/api/v2/pipeline/%s/workflow'
+				, $lastPipe->id
+			);
 
-		return json_encode($badges);
+			$handle    = fopen($url, 'r', FALSE, $context);
+			$rawData   = stream_get_contents($handle);
+			$workflows = json_decode($rawData);
+		}
+
+		$colors = [
+			'success'   => '107529'
+			, 'running' => 'A89B39'
+			, 'failing' => 'a93a29'
+			, 'default' => '6E9DA8'
+		];
+
+		if($workflows??0)
+		{
+			$badges = [];
+
+			foreach($workflows->items as $item)
+			{
+				if($item->name === $workflow)
+				{
+					header('Content-type: image/svg+xml');
+
+					$status = $item->status;
+
+					if($status === 'success')
+					{
+						$status = 'passing!';
+					}
+
+					if($status === 'failed')
+					{
+						$status = 'failing!';
+					}
+
+					return new BadgeView([
+						'message' => htmlentities($status)
+						, 'label' => htmlentities($_GET['label'] ?? $item->name)
+						, 'color' => $colors[$item->status] ?? $colors['default']
+					]);
+				}
+
+				$badges[ $item->name ] = $item->status;
+			}
+
+			header('Content-type: application/json');
+
+			return json_encode($badges);
+		}
+
+		return new BadgeView([
+			'message' => htmlentities('Error')
+			, 'label' => htmlentities('!')
+			, 'color' => $colors['default']
+		]);
 	}
 }
