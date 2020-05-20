@@ -14,8 +14,6 @@ class Home implements Routable
 
 	public function _dynamic($router)
 	{
-		header('Cache-Control: no-cache');
-
 		$args = $router->request()->path(-1)->nodes();
 
 		$circleConfig = Settings::read('circleci');
@@ -76,12 +74,14 @@ class Home implements Routable
 		$colors = [
 			'success'   => '107529'
 			, 'running' => 'A89B39'
-			, 'failing' => 'a93a29'
+			, 'failed'  => 'A93A29'
 			, 'default' => '6E9DA8'
 		];
 
 		if($workflows??0)
 		{
+			header('Cache-Control: max-age: 2419200, immutable');
+
 			$badges = [];
 
 			foreach($workflows->items as $item)
@@ -116,6 +116,8 @@ class Home implements Routable
 
 			return json_encode($badges);
 		}
+
+		header('Cache-Control: no-cache');
 
 		return new BadgeView([
 			'message' => htmlentities('Error')
