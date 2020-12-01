@@ -57,8 +57,14 @@ __halt_compiler(); ?>
 			dominant-baseline="middle"
 			text-anchor="middle"
 			y="50%" x="50%">
-			<tspan fill="#FFF"><?=$message;?></tspan>
+			<tspan class = "white-text"><?=$message;?></tspan>
 		</text>
+
+		<style type = "text/css">
+			* { font-family: sans-serif; }
+			.white-text { fill: #FF0; }
+
+		</style>
 
 	</svg>
 </svg>

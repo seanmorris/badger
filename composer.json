@@ -11,7 +11,7 @@
     ],
     "require": {
         "ext-mbstring": "*",
-        "seanmorris/ids": "dev-sm-loader",
+        "seanmorris/ids": "dev-master",
         "seanmorris/theme": "^1.0"
     },
     "require-dev": {},

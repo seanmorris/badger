@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4393d94be31e4ec24baa85d84c2517b1",
+    "content-hash": "a88de0dbcdbec5af76172abd0f82d7f7",
     "packages": [
         {
             "name": "seanmorris/ids",
-            "version": "dev-sm-loader",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/seanmorris/ids.git",
-                "reference": "298175e249b65e1b8d51ede8018e3cb28f51afa1"
+                "reference": "422724395079473bb4be441038314974ce36201e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seanmorris/ids/zipball/298175e249b65e1b8d51ede8018e3cb28f51afa1",
-                "reference": "298175e249b65e1b8d51ede8018e3cb28f51afa1",
+                "url": "https://api.github.com/repos/seanmorris/ids/zipball/422724395079473bb4be441038314974ce36201e",
+                "reference": "422724395079473bb4be441038314974ce36201e",
                 "shasum": ""
             },
             "require-dev": {
@@ -42,7 +42,7 @@
                     "email": "sean@sean-morris.com"
                 }
             ],
-            "time": "2020-05-19T01:34:10+00:00"
+            "time": "2020-05-20T23:51:27+00:00"
         },
         {
             "name": "seanmorris/theme",
