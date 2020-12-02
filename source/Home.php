@@ -122,7 +122,7 @@ class Home implements Routable
 					$badgeType = $get['timed'] ? TimedBadgeView::class : BadgeView::class;
 
 					return new $badgeType([
-						'message' => htmlentities($status)
+						'message' => htmlentities($message)
 						, 'label' => htmlentities($get['label'] ?? $item->name)
 						, 'color' => $colors[$status] ?? $colors['default']
 						, 'time'  => $time
