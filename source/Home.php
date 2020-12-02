@@ -15,6 +15,7 @@ class Home implements Routable
 	public function _dynamic($router)
 	{
 		$args = $router->request()->path(-1)->nodes();
+		$get  = $router->request()->get();
 
 		$circleConfig = Settings::read('circleci');
 
@@ -22,6 +23,10 @@ class Home implements Routable
 		$project  = array_shift($args);
 		$workflow = array_shift($args);
 		$branch   = array_shift($args) ?: 'master';
+
+		$get['timed'] = $get['timed'] ?? FALSE;
+
+		$timeFormat = $get['time'] ?? 'Y-m-d h:i:s T';
 
 		if(!$project)
 		{
@@ -86,30 +91,45 @@ class Home implements Routable
 
 			foreach($workflows->items as $item)
 			{
+				$status = $get['status'] ?? $item->status;
+
+				$message = $status;
+
+				if($item->status === 'success')
+				{
+					$message = 'passed!';
+					$time   = $item->stopped_at;
+				}
+
+				if($item->status === 'running')
+				{
+					$message = 'running...';
+					$time   = $item->created_at;
+				}
+
+				if($item->status === 'failed')
+				{
+					$message = 'failing!';
+					$time   = $item->stopped_at;
+				}
+
 				if($item->name === $workflow)
 				{
+					$time = date($timeFormat, strtotime($time));
+
 					header('Content-type: image/svg+xml');
 
-					$status = $item->status;
+					$badgeType = $get['timed'] ? TimedBadgeView::class : BadgeView::class;
 
-					if($status === 'success')
-					{
-						$status = 'passing!';
-					}
-
-					if($status === 'failed')
-					{
-						$status = 'failing!';
-					}
-
-					return new BadgeView([
+					return new $badgeType([
 						'message' => htmlentities($status)
-						, 'label' => htmlentities($_GET['label'] ?? $item->name)
-						, 'color' => $colors[$item->status] ?? $colors['default']
+						, 'label' => htmlentities($get['label'] ?? $item->name)
+						, 'color' => $colors[$status] ?? $colors['default']
+						, 'time'  => $time
 					]);
 				}
 
-				$badges[ $item->name ] = $item->status;
+				$badges[ $item->name ] = $status;
 			}
 
 			header('Content-type: application/json');
@@ -119,10 +139,17 @@ class Home implements Routable
 
 		header('Cache-Control: no-cache');
 
-		return new BadgeView([
+		$time = date($timeFormat, time());
+
+		$badgeType = $get['timed'] ? TimedBadgeView::class : BadgeView::class;
+
+		header('Content-type: image/svg+xml');
+
+		return new $badgeType([
 			'message' => htmlentities('Error')
 			, 'label' => htmlentities('!')
 			, 'color' => $colors['default']
+			, 'time'  => $time
 		]);
 	}
 }
