@@ -18,15 +18,15 @@ __halt_compiler(); ?>
 	<defs>
 
 		<clipPath id="round-left-corners">
-			<rect x="0" y="0" width="200" height="20" rx="2" ry="2"/>
+			<rect x="0" y="0" width="200" height="20" rx="3" ry="3"/>
 		</clipPath>
 
 		<clipPath id="round-right-corners">
-			<rect x="-65" y="0" width="150" height="20" rx="2" ry="2"/>
+			<rect x="-65" y="0" width="150" height="20" rx="3" ry="3"/>
 		</clipPath>
 
 		<clipPath id="round-all-corners">
-			<rect x="0" y="0" width="150" height="100%" rx="2" ry="2"/>
+			<rect x="0" y="0" width="150" height="100%" rx="3" ry="3"/>
 		</clipPath>
 
 		<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -73,7 +73,7 @@ __halt_compiler(); ?>
 
 	</svg>
 
-	<svg height="50%" width="100%" y="50%" x ="0">
+	<svg height="33.3%" width="100%" y="66.6%" x ="0">
 
 		<text
 			style="filter: url(#shadow);"
