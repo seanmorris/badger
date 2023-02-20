@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-		"php": "^8.0.0",
+		"php": "8.0.28",
         "ext-mbstring": "*",
         "seanmorris/ids": "dev-master",
         "seanmorris/theme": "^1.0"
