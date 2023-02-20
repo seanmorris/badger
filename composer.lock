@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a88de0dbcdbec5af76172abd0f82d7f7",
+    "content-hash": "2ea72a4611d3c9a8764341ededf7e207",
     "packages": [
         {
             "name": "seanmorris/ids",
@@ -12,27 +12,27 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/seanmorris/ids.git",
-                "reference": "422724395079473bb4be441038314974ce36201e"
+                "reference": "e17abdfd38c22f7c30417bfddb3cbab794c82ca5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seanmorris/ids/zipball/422724395079473bb4be441038314974ce36201e",
-                "reference": "422724395079473bb4be441038314974ce36201e",
+                "url": "https://api.github.com/repos/seanmorris/ids/zipball/e17abdfd38c22f7c30417bfddb3cbab794c82ca5",
+                "reference": "e17abdfd38c22f7c30417bfddb3cbab794c82ca5",
                 "shasum": ""
             },
             "require-dev": {
                 "phpunit/phpunit": "^9",
-                "seanmorris/ksqlc": "dev-master",
                 "simpletest/simpletest": "dev-master"
             },
+            "default-branch": true,
             "bin": [
                 "bin/idilic"
             ],
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SeanMorris\\Ids\\Test\\": "test/",
-                    "SeanMorris\\Ids\\": "source/"
+                    "SeanMorris\\Ids\\": "source/",
+                    "SeanMorris\\Ids\\Test\\": "test/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -42,20 +42,24 @@
                     "email": "sean@sean-morris.com"
                 }
             ],
-            "time": "2020-05-20T23:51:27+00:00"
+            "support": {
+                "issues": "https://github.com/seanmorris/ids/issues",
+                "source": "https://github.com/seanmorris/ids/tree/master"
+            },
+            "time": "2022-06-21T10:04:05+00:00"
         },
         {
             "name": "seanmorris/theme",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/seanmorris/theme.git",
-                "reference": "97554e153312026c7db4af8ae3653d20fe9d117d"
+                "reference": "6b1613006d3b6ce5167c61db05b8a8f3fe860cc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seanmorris/theme/zipball/97554e153312026c7db4af8ae3653d20fe9d117d",
-                "reference": "97554e153312026c7db4af8ae3653d20fe9d117d",
+                "url": "https://api.github.com/repos/seanmorris/theme/zipball/6b1613006d3b6ce5167c61db05b8a8f3fe860cc0",
+                "reference": "6b1613006d3b6ce5167c61db05b8a8f3fe860cc0",
                 "shasum": ""
             },
             "require-dev": {
@@ -64,8 +68,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SeanMorris\\Theme\\Test\\": "test/",
-                    "SeanMorris\\Theme\\": "source/"
+                    "SeanMorris\\Theme\\": "source/",
+                    "SeanMorris\\Theme\\Test\\": "test/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -79,7 +83,11 @@
                 }
             ],
             "description": "Simple, sane templating and theming for PHP",
-            "time": "2017-07-02T12:52:16+00:00"
+            "support": {
+                "issues": "https://github.com/seanmorris/theme/issues",
+                "source": "https://github.com/seanmorris/theme/tree/1.0.8"
+            },
+            "time": "2022-01-17T21:40:49+00:00"
         }
     ],
     "packages-dev": [],
@@ -91,8 +99,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": "^8.0.0",
         "ext-mbstring": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.1.0"
 }
